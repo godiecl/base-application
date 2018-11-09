@@ -1,0 +1,57 @@
+### User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+/local.properties
+
+### Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+### Java + vcs
+.idea/**/compiler.xml
+.idea/**/encodings.xml
+.idea/**/vcs.xml
+
+### Gradle + autoimport
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/mongoSettings.xml
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+.idea/**/misc.xml
+*.iml
+.idea/caches/
+.idea/assetWizardSettings.xml
+.idea/kotlinc.xml
+
+### Gradle template
+.gradle
+/build/
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+gradle-app.setting
+
+### File-based project format
+*.iws
+
+.DS_Store
+# Build directory
+build/
+
+/captures
+.externalNativeBuild
+
+# Database (H2, SQLite)
+*.db
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*

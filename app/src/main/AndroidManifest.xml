@@ -1,0 +1,18 @@
+<!--
+  ~ Copyright (c) 2018.  Diego Urrutia Astorga <durrutia@ucn.cl>
+  ~ This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+  ~ http://creativecommons.org/licenses/by-nc/4.0/
+  ~
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cl.ucn.disc.dsm.base">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" />
+</manifest>

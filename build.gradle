@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2018.  Diego Urrutia Astorga <durrutia@ucn.cl>
+ * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+ * http://creativecommons.org/licenses/by-nc/4.0/
+ *
+ */
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.0-alpha03'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+
+    buildDir = "${System.env.TEMP}//gradle-build//${rootProject.name}//${project.name}"
+    logger.lifecycle("Using buildDir: ${buildDir}")
+
+    repositories {
+        google()
+        jcenter()
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
