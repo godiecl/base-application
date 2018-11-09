@@ -12,7 +12,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "cl.ucn.disc.dsm.base"
+        applicationId "cl.ucn.disc.dsm.base.listview"
         minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
@@ -103,5 +103,11 @@ dependencies {
     // Lombok Android
     compileOnly "org.projectlombok:lombok:1.18.2"
     annotationProcessor "org.projectlombok:lombok:1.18.2"
+
+    // Faker
+    implementation "com.github.javafaker:javafaker:0.16"
+
+    // Material
+    implementation "com.google.android.material:material:1.0.0"
 
 }
