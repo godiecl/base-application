@@ -2,7 +2,10 @@ package cl.ucn.disc.dsm.base.activities;
 
 import android.app.ListActivity;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.Nullable;
 import cl.ucn.disc.dsm.base.adapters.PersonaAdapter;
@@ -63,4 +66,45 @@ public final class PersonaListActivity extends ListActivity {
 
     }
 
+
+    /**
+     * Called after {@link #onCreate} &mdash; or after {@link #onRestart} when
+     * the activity had been stopped, but is now again being displayed to the
+     * user.  It will be followed by {@link #onResume}.
+     *
+     * <p><em>Derived classes must call through to the super class's
+     * implementation of this method.  If they do not, an exception will be
+     * thrown.</em></p>
+     *
+     * @see #onCreate
+     * @see #onStop
+     * @see #onResume
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Si el adaptador no es null y no hay datos ..
+        if (this.personaAdapter != null && this.personaAdapter.isEmpty()) {
+
+            // Mensaje para mostrar que se estan cargando los datos
+            Snackbar.make(findViewById(android.R.id.content), "Loading data ..", Snackbar.LENGTH_LONG).show();
+
+            // Ejecuto en segundo plano ..
+            AsyncTask.execute(() -> {
+
+                log.debug("Loading data ..");
+                personaAdapter.load();
+
+                // .. ejecuto en el hilo principal
+                runOnUiThread(() -> {
+
+                    // Notifico que cambio el conjunto de datos.
+                    personaAdapter.notifyDataSetChanged();
+
+                });
+
+            });
+        }
+    }
 }
