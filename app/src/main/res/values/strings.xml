@@ -6,5 +6,5 @@
   -->
 
 <resources>
-    <string name="app_name">Base Application</string>
+    <string name="app_name">Base: ListView</string>
 </resources>
