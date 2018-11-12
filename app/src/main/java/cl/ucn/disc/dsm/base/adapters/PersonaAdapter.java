@@ -19,6 +19,7 @@ import com.github.javafaker.Faker;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +82,9 @@ public final class PersonaAdapter extends BaseAdapter {
             // log.debug("Persona: {}", personas.get(i));
 
         }
+
+        // Ordamiento por apellidos
+        Collections.sort(this.personas, (p1, p2) -> p1.getApellidos().compareTo(p2.getApellidos()));
 
     }
 
