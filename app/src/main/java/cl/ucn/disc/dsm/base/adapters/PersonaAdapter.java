@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018.  Diego Urrutia Astorga <durrutia@ucn.cl>
+ * This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+ * http://creativecommons.org/licenses/by-nc/4.0/
+ *
+ */
+
 package cl.ucn.disc.dsm.base.adapters;
 
 import android.content.Context;
@@ -5,17 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.javafaker.Faker;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cl.ucn.disc.dsm.base.R;
 import cl.ucn.disc.dsm.base.model.Persona;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import uk.co.senab.bitmapcache.Md5;
 
 /**
  * Adaptador de Personas
@@ -29,6 +41,11 @@ public final class PersonaAdapter extends BaseAdapter {
     private List<Persona> personas = new ArrayList<>();
 
     /**
+     * Hash de md5(email)
+     */
+    private Map<String, String> md5Email = new HashMap<>();
+
+    /**
      * Inflater
      */
     private LayoutInflater inflater;
@@ -39,6 +56,10 @@ public final class PersonaAdapter extends BaseAdapter {
     public PersonaAdapter(@NonNull final Context context) {
 
         this.inflater = LayoutInflater.from(context);
+
+        // Debug de picasso
+        Picasso.get().setIndicatorsEnabled(true);
+
     }
 
     /**
@@ -50,14 +71,14 @@ public final class PersonaAdapter extends BaseAdapter {
 
         for (int i = 0; i < 500; i++) {
 
-            personas.add(Persona.builder()
+            this.personas.add(Persona.builder()
                     .nombre(faker.name().firstName())
                     .apellidos(faker.name().lastName())
                     .email(faker.internet().emailAddress())
                     .numero(faker.phoneNumber().cellPhone())
                     .build());
 
-            log.debug("Persona: {}", personas.get(i));
+            // log.debug("Persona: {}", personas.get(i));
 
         }
 
@@ -139,7 +160,28 @@ public final class PersonaAdapter extends BaseAdapter {
         final Persona persona = this.personas.get(position);
 
         // Valores
-        holder.nombre.setText(persona.getNombre());
+        holder.nombre.setText(String.format("%s, %s", persona.getApellidos(), persona.getNombre()));
+
+        // Numero de telefono
+        holder.numero.setText(persona.getNumero());
+
+        // Correo electronico
+        holder.email.setText(persona.getEmail());
+
+        // Obtengo el md5 desde el map
+        String md5 = md5Email.get(persona.getEmail());
+
+        // Si no existe, lo calculo y lo guardo
+        if (md5 == null) {
+            md5 = Md5.encode(persona.getEmail());
+            md5Email.put(persona.getEmail(), md5);
+        }
+
+        // El gran pintor nos ayuda
+        Picasso.get()
+                .load("https://www.gravatar.com/avatar/" + md5)
+                .placeholder(R.drawable.engineering_sketch_user)
+                .into(holder.foto);
 
         return convertView;
     }
@@ -149,10 +191,19 @@ public final class PersonaAdapter extends BaseAdapter {
      */
     private static class ViewHolder {
 
+        ImageView foto;
+
         TextView nombre;
 
+        TextView numero;
+
+        TextView email;
+
         ViewHolder(View view) {
+            foto = view.findViewById(R.id.rp_iv_foto);
             nombre = view.findViewById(R.id.rp_tv_nombre);
+            numero = view.findViewById(R.id.rp_tv_numero);
+            email = view.findViewById(R.id.rp_tv_email);
         }
 
     }
