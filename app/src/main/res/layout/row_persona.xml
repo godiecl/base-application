@@ -7,6 +7,7 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
@@ -14,17 +15,18 @@
     android:layout_marginEnd="4dp"
     android:orientation="horizontal">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/rp_iv_foto"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center|center_vertical"
-        android:layout_margin="2dp" />
+        android:layout_margin="2dp"
+        fresco:placeholderImage="@drawable/engineering_sketch_user" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/rp_tv_nombre"

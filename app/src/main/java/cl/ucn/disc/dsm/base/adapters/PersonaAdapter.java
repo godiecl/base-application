@@ -8,15 +8,15 @@
 package cl.ucn.disc.dsm.base.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.github.javafaker.Faker;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,9 +57,6 @@ public final class PersonaAdapter extends BaseAdapter {
     public PersonaAdapter(@NonNull final Context context) {
 
         this.inflater = LayoutInflater.from(context);
-
-        // Debug de picasso
-        Picasso.get().setIndicatorsEnabled(true);
 
     }
 
@@ -181,11 +178,9 @@ public final class PersonaAdapter extends BaseAdapter {
             md5Email.put(persona.getEmail(), md5);
         }
 
-        // El gran pintor nos ayuda
-        Picasso.get()
-                .load("https://www.gravatar.com/avatar/" + md5)
-                .placeholder(R.drawable.engineering_sketch_user)
-                .into(holder.foto);
+        // El gran fb nos ayuda
+        Uri uri = Uri.parse("https://www.gravatar.com/avatar/" + md5);
+        holder.foto.setImageURI(uri);
 
         return convertView;
     }
@@ -195,7 +190,7 @@ public final class PersonaAdapter extends BaseAdapter {
      */
     private static class ViewHolder {
 
-        ImageView foto;
+        SimpleDraweeView foto;
 
         TextView nombre;
 
@@ -205,6 +200,7 @@ public final class PersonaAdapter extends BaseAdapter {
 
         ViewHolder(View view) {
             foto = view.findViewById(R.id.rp_iv_foto);
+
             nombre = view.findViewById(R.id.rp_tv_nombre);
             numero = view.findViewById(R.id.rp_tv_numero);
             email = view.findViewById(R.id.rp_tv_email);
