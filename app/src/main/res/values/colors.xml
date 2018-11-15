@@ -7,7 +7,21 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorSky">#7D9BC1</color>
+    <color name="colorSkyDark">#425563</color>
+    <color name="colorSkyLight">#DBE2E9</color>
+
+    <color name="colorEarth">#B86125</color>
+    <color name="colorEarthDark">#623412</color>
+    <color name="colorEarthLight">#FFAA4D</color>
+
+    <color name="colorPrimary">@color/colorSky</color>
+    <color name="colorPrimaryDark">@color/colorSkyDark</color>
+    <color name="textColorPrimary">@android:color/white</color>
+    <color name="colorAccent">@color/colorEarth</color>
+    <color name="textColor">@android:color/black</color>
+    <color name="windowBackground">@android:color/white</color>
+    <color name="navigationBarColor">@color/colorSkyDark</color>
+
 </resources>
