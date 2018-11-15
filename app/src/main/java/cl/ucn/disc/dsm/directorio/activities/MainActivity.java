@@ -8,6 +8,8 @@
 package cl.ucn.disc.dsm.directorio.activities;
 
 import android.os.Bundle;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -38,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
         // Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ListView listView = findViewById(android.R.id.list);
+
+        TextView empty = findViewById(android.R.id.empty);
+        listView.setEmptyView(empty);
 
     }
 

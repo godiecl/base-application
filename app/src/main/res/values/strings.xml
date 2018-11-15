@@ -7,4 +7,5 @@
 
 <resources>
     <string name="app_name">Directorio UCN</string>
+    <string name="empty">No Data</string>
 </resources>
