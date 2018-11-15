@@ -10,6 +10,7 @@ package cl.ucn.disc.dsm.directorio.activities;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import cl.ucn.disc.dsm.directorio.R;
 
@@ -19,6 +20,11 @@ import cl.ucn.disc.dsm.directorio.R;
  * @author Diego Urrutia-Astorga.
  */
 public class MainActivity extends AppCompatActivity {
+
+    static {
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_AUTO);
+    }
 
     /**
      *
