@@ -10,4 +10,8 @@
         app:font="@font/myriadpro_regular"
         app:fontStyle="normal"
         app:fontWeight="400" />
+    <font
+        app:font="@font/myriadpro_bold"
+        app:fontStyle="normal"
+        app:fontWeight="700" />
 </font-family>
