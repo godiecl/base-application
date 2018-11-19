@@ -1,0 +1,25 @@
+<!--
+  ~ Copyright (c) 2018 Mapping Pro. Made with love in Antofagasta, Chile.
+  -->
+
+<configuration debug="true">
+
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are  by default assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder
+             %d{HH:mm:ss.SSS} [%thread] %-5level %logger{24} - %msg%n
+             -->
+        <!-- https://logging.apache.org/log4php/docs/layouts/pattern.html -->
+        <tagEncoder>
+            <pattern>%logger{12}</pattern>
+        </tagEncoder>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-5level] in %logger{36}#%M:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug" additivity="false">
+        <appender-ref ref="ConsoleAppender" />
+    </root>
+
+</configuration>

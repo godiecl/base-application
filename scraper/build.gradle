@@ -1,0 +1,30 @@
+apply plugin: 'java-library'
+
+dependencies {
+
+    // No libs
+    // implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Simple Logging Facade 4 Java
+    implementation "org.slf4j:slf4j-api:1.7.25"
+
+    // Logback
+    implementation "ch.qos.logback:logback-classic:1.2.3"
+    // testImplementation "ch.qos.logback:logback-classic:1.2.3"
+
+    compileOnly "org.projectlombok:lombok:1.18.2"
+    annotationProcessor "org.projectlombok:lombok:1.18.2"
+
+    // JSOUP: https://jsoup.org/
+    implementation "org.jsoup:jsoup:1.11.3"
+
+    // GSON
+    implementation "com.google.code.gson:gson:2.8.5"
+
+    // Commons IO
+    implementation "commons-io:commons-io:2.6"
+
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
