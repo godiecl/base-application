@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
  * Getting the data from http://online.ucn.cl/directoriotelefonicoemail/Default.aspx?ind=func
  */
 @Slf4j
-public final class Main {
+public final class Scrapper {
 
 
     /**
@@ -100,7 +100,9 @@ public final class Main {
 
         // log.debug("Processing id: {}", id);
 
-        Document doc = Jsoup.connect("http://online.ucn.cl/directoriotelefonicoemail/fichaGenerica/?cod=" + id).get();
+        Document doc = Jsoup
+                .connect("http://online.ucn.cl/directoriotelefonicoemail/fichaGenerica/?cod=" + id)
+                .get();
         // log.debug("Title: {}", doc.title());
 
         String nombre = getString(doc, "lblNombre");
