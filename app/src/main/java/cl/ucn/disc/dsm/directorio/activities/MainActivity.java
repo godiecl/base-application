@@ -8,8 +8,10 @@
 package cl.ucn.disc.dsm.directorio.activities;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import org.apache.commons.lang3.time.StopWatch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -45,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        final StopWatch stopWatch = StopWatch.createStarted();
+
         setContentView(R.layout.activity_main);
 
         // Toolbar
@@ -54,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // ListView of data
         final ListView listView = findViewById(android.R.id.list);
 
-        final TextView empty = findViewById(android.R.id.empty);
+        final View empty = findViewById(android.R.id.empty);
         listView.setEmptyView(empty);
 
         // Model
@@ -78,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
             listView.setAdapter(personAdapter);
 
         });
+
+        log.debug("onCreate() in {}.", stopWatch);
 
     }
 

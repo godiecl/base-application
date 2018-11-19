@@ -8,7 +8,7 @@
 package cl.ucn.disc.dsm.directorio.activities;
 
 import android.app.Application;
-import android.os.Handler;
+import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -70,8 +70,7 @@ public class PersonViewModel extends AndroidViewModel {
      */
     private void loadPeople() {
 
-        Handler handler = new Handler();
-        handler.post(() -> {
+        AsyncTask.execute(() -> {
 
             log.debug("Loading data ..");
 
@@ -95,7 +94,7 @@ public class PersonViewModel extends AndroidViewModel {
             }
 
             // Set the list
-            this.people.setValue(personList);
+            this.people.postValue(personList);
 
         });
 
