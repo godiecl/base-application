@@ -7,11 +7,17 @@
 
 package cl.ucn.disc.dsm.scraper;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,13 +38,18 @@ public final class ThreadScrapper {
     private static final int START_ID = 1;
 
     // End id
-    private static final int END_ID = 200;
+    private static final int END_ID = 27503;
 
     // Parallel tasks
-    private static final int PARALLEL_TASKS = 2;
+    private static final int PARALLEL_TASKS = 4;
 
     // Saving block
-    private static final int BLOCK_SIZE = 10;
+    private static final int BLOCK_SIZE = 50;
+
+    // Json un-serializer
+    private static final Gson GSON = new GsonBuilder()
+            .setPrettyPrinting()
+            .create();
 
     /**
      * @param args
@@ -79,7 +90,6 @@ public final class ThreadScrapper {
     }
 
     /**
-     *
      * @param id
      * @param list
      * @return
@@ -100,14 +110,16 @@ public final class ThreadScrapper {
                         return;
                     }
 
-                    String threadName = Thread.currentThread().getName();
-                    log.debug("Thread: {} searching id: {}", threadName, value);
-
-                    Document doc = Jsoup
+                    // Web documento (webpage)
+                    final Document doc = Jsoup
                             .connect("http://online.ucn.cl/directoriotelefonicoemail/fichaGenerica/?cod=" + value)
                             .get();
 
+                    // Name of the person
                     final String nombre = getString(doc, "lblNombre");
+
+                    String threadName = Thread.currentThread().getName();
+                    log.debug("Thread: {} searching id: {} -> {}", threadName, value, nombre);
 
                     if (nombre.length() < 2) {
                         // log.debug("Person id {} not found!", value);
@@ -120,7 +132,7 @@ public final class ThreadScrapper {
                     final String telefono = getString(doc, "lblTelefono");
                     final String oficina = getString(doc, "lblOficina");
 
-                    final Person persona = Person.builder()
+                    final Person person = Person.builder()
                             .id(value)
                             .nombre(nombre)
                             .cargo(cargo)
@@ -130,16 +142,23 @@ public final class ThreadScrapper {
                             .oficina(oficina)
                             .build();
 
-                    log.debug("Id: {}. Nombre: {}", value, persona.getNombre());
+                    // log.debug("Id: {}. Nombre: {}", value, persona.getNombre());
 
-                    list.add(persona);
+                    // Add person to list
+                    list.add(person);
 
+                    // If we have the block size? save!
                     synchronized (list) {
+
+                        // Block size
                         if (list.size() == BLOCK_SIZE) {
-                            log.debug("Saving {} persons ..", BLOCK_SIZE);
-                            for (final Person p : list) {
-                                log.debug("Person: {}", p.getNombre());
-                            }
+
+                            // Filename
+                            final String filename = "people_" + value + ".json";
+                            log.debug("Saving {} persons in {}.", BLOCK_SIZE, filename);
+
+                            FileUtils.writeStringToFile(new File(filename), GSON.toJson(list), StandardCharsets.UTF_8);
+
                             list.clear();
                         }
                     }
@@ -150,7 +169,7 @@ public final class ThreadScrapper {
 
 
                 try {
-                    TimeUnit.MILLISECONDS.sleep(200 + (int) (500 * Math.random()));
+                    TimeUnit.MILLISECONDS.sleep(500 + (int) (1000 * Math.random()));
                 } catch (InterruptedException e) {
                     // e.printStackTrace();
                 }
