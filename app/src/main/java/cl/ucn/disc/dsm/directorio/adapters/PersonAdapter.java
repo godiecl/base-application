@@ -61,22 +61,9 @@ public final class PersonAdapter extends BaseAdapter {
      *
      * @param people to add.
      */
-    public void setPeople(final List<Person> people) {
+    public void setPeople(@NonNull final List<Person> people) {
 
         this.people.addAll(people);
-
-    }
-
-    /**
-     * Cargar las personas desde alguna fuente (url, texto, etc.)
-     */
-    public void load() {
-
-
-        // Read from json
-
-        // Ordamiento por apellidos
-        // Collections.sort(this.people, (p1, p2) -> p1.getApellidos().compareTo(p2.getApellidos()));
 
     }
 

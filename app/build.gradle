@@ -120,4 +120,9 @@ dependencies {
     // GSON
     implementation "com.google.code.gson:gson:2.8.5"
 
+    // ModelView
+    implementation "androidx.lifecycle:lifecycle-runtime:2.0.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
 }
