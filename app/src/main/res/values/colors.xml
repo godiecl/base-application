@@ -8,20 +8,34 @@
 
 <resources>
 
+    <color name="colorSkyLight">#DBE2E9</color>
     <color name="colorSky">#7D9BC1</color>
     <color name="colorSkyDark">#425563</color>
-    <color name="colorSkyLight">#DBE2E9</color>
+    <color name="colorSkyDarkDark">#33414b</color>
+    <color name="colorSkyDarkDarkDark">#2b363f</color>
 
     <color name="colorEarth">#B86125</color>
-    <color name="colorEarthDark">#623412</color>
     <color name="colorEarthLight">#FFAA4D</color>
+    <color name="colorEarthDark">#623412</color>
+    <color name="colorEarthDarkDark">#43230b</color>
+    <color name="colorEarthDarkDarkDark">#43230b</color>
 
     <color name="colorPrimary">@color/colorSky</color>
     <color name="colorPrimaryDark">@color/colorSkyDark</color>
-    <color name="textColorPrimary">@android:color/white</color>
+
     <color name="colorAccent">@color/colorEarth</color>
     <color name="textColor">@android:color/black</color>
-    <color name="windowBackground">@android:color/white</color>
-    <color name="navigationBarColor">@color/colorSkyDark</color>
+
+    <!-- Day -->
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorSecondary">#414141</color>
+    <color name="textColorTertiary">#616161</color>
+
+    <color name="statusBarColor">@color/colorSkyDarkDark</color>
+    <color name="windowBackground">#fafafa</color>
+    <color name="dividerColor">#e0e0e0</color>
+    <color name="navigationBarColor">@color/colorEarthDark</color>
+    <color name="toolbarBackground">@color/colorSkyDark</color>
+
 
 </resources>

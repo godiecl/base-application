@@ -1,87 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2018.  Diego Urrutia Astorga <durrutia@ucn.cl>
-  ~ This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
-  ~ http://creativecommons.org/licenses/by-nc/4.0/
-  ~
-  -->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="4dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="4dp"
-    android:orientation="horizontal">
+    android:paddingStart="2dp"
+    android:paddingEnd="2dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/rp_iv_foto"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_gravity="center|center_vertical"
-        android:layout_margin="2dp"
-        fresco:placeholderImage="@drawable/engineering_sketch_user" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="false"
+        fresco:placeholderImage="@drawable/engineering_sketch_user"
+        tools:srcCompat="@tools:sample/avatars[1]" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/rp_tv_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-2dp"
+        android:layout_toEndOf="@+id/rp_iv_foto"
+        android:textAppearance="@style/TextLarge"
+        tools:text="@tools:sample/full_names" />
 
-        <TextView
-            android:id="@+id/rp_tv_nombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Ronnie Marcelo Maldonado Araya"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/rp_tv_cargo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rp_tv_nombre"
+        android:layout_marginTop="-2dp"
+        android:layout_toEndOf="@+id/rp_iv_foto"
+        android:textAppearance="@style/TextMedium"
+        tools:text="@tools:sample/cities" />
 
-        <TextView
-            android:id="@+id/rp_tv_cargo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Técnico de Soporte y Redes" />
+    <TextView
+        android:id="@+id/rp_tv_telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rp_tv_cargo"
+        android:layout_marginTop="-2dp"
+        android:layout_toEndOf="@+id/rp_iv_foto"
+        android:textAppearance="@style/TextSmall"
+        tools:text="@tools:sample/us_phones" />
 
-        <TextView
-            android:id="@+id/rp_tv_unidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Facultad de Medicina" />
+    <TextView
+        android:id="@+id/rp_tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/rp_tv_telefono"
+        android:layout_alignBottom="@+id/rp_tv_telefono"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-2dp"
+        android:layout_toRightOf="@+id/rp_tv_telefono"
+        android:paddingLeft="4dp"
+        android:textAppearance="@style/TextSmall"
+        android:textStyle="bold"
+        tools:text="@tools:sample/last_names" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/rp_tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rp_tv_email"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-2dp"
+        android:layout_toEndOf="@+id/rp_iv_foto"
+        android:textAppearance="@style/TextSmall"
+        tools:text="@tools:sample/us_zipcodes" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:gravity="end"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/rp_tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="rmaldona@ucn.cl"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/rp_tv_telefono"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Fono (51) 2209854" />
-
-        <TextView
-            android:id="@+id/rp_tv_oficina"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="EDIF. E2 / OF. 207" />
-
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

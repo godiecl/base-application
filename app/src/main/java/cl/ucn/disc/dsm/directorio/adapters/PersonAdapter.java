@@ -11,15 +11,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import cl.ucn.disc.dsm.directorio.R;
 import cl.ucn.disc.dsm.directorio.model.Person;
@@ -30,17 +31,27 @@ import lombok.extern.slf4j.Slf4j;
  * Adaptador de Personas
  */
 @Slf4j
-public final class PersonAdapter extends BaseAdapter {
+public final class PersonAdapter extends BaseAdapter implements Filterable {
+
+    /**
+     * Filter
+     */
+    private final Filter filter;
 
     /**
      * Listado de Personas.
      */
-    private List<Person> people = new ArrayList<>();
+    private final List<Person> peopleFiltered = new ArrayList<>();
+
+    /**
+     * Person list filtered
+     */
+    private final List<Person> peopleAll = new ArrayList<>();
 
     /**
      * Hash de md5(email)
      */
-    private Map<String, String> md5Email = new HashMap<>();
+    // private Map<String, String> md5Email = new HashMap<>();
 
     /**
      * Inflater
@@ -52,7 +63,50 @@ public final class PersonAdapter extends BaseAdapter {
      */
     public PersonAdapter(@NonNull final Context context) {
 
+        // Inflador
         this.inflater = LayoutInflater.from(context);
+
+        // Filtrador
+        this.filter = new Filter() {
+
+            @Override
+            protected FilterResults performFiltering(final CharSequence constraint) {
+
+                log.debug("Query constraint: {}", constraint);
+
+                final FilterResults results = new FilterResults();
+
+                if (constraint != null && constraint.length() > 0) {
+
+                    final List<Person> peopleFiltered = new ArrayList<>();
+                    for (final Person person : peopleAll) {
+                        if (person.getNombre().toLowerCase().contains(constraint)) {
+                            peopleFiltered.add(person);
+                        }
+                    }
+
+                    results.count = peopleFiltered.size();
+                    results.values = peopleFiltered;
+
+                } else {
+                    results.count = peopleAll.size();
+                    results.values = peopleAll;
+                }
+
+                log.debug("Count: {}", results.count);
+
+                return results;
+
+            }
+
+            @Override
+            protected void publishResults(final CharSequence constraint, final FilterResults results) {
+                peopleFiltered.clear();
+                final List<Person> people = (List<Person>) results.values;
+                peopleFiltered.addAll(people);
+                notifyDataSetChanged();
+            }
+        };
 
     }
 
@@ -63,7 +117,8 @@ public final class PersonAdapter extends BaseAdapter {
      */
     public void setPeople(@NonNull final List<Person> people) {
 
-        this.people.addAll(people);
+        this.peopleFiltered.addAll(people);
+        this.peopleAll.addAll(people);
 
     }
 
@@ -74,7 +129,7 @@ public final class PersonAdapter extends BaseAdapter {
      */
     @Override
     public int getCount() {
-        return this.people.size();
+        return this.peopleFiltered.size();
     }
 
     /**
@@ -86,7 +141,7 @@ public final class PersonAdapter extends BaseAdapter {
      */
     @Override
     public Person getItem(int position) {
-        return this.people.get(position);
+        return this.peopleFiltered.get(position);
     }
 
     /**
@@ -127,7 +182,7 @@ public final class PersonAdapter extends BaseAdapter {
         // Si la fila es null, la inflo
         if (convertView == null) {
 
-            convertView = inflater.inflate(R.layout.row_person, parent, false);
+            convertView = this.inflater.inflate(R.layout.row_person, parent, false);
 
             // Instancio y almaceno
             holder = new ViewHolder(convertView);
@@ -140,16 +195,15 @@ public final class PersonAdapter extends BaseAdapter {
         }
 
         // Persona a ser mostrada
-        final Person persona = this.people.get(position);
+        final Person persona = this.peopleFiltered.get(position);
 
         // Valores
         holder.nombre.setText(persona.getNombre());
         holder.cargo.setText(persona.getCargo());
-        holder.unidad.setText(persona.getUnidad());
 
         holder.email.setText(persona.getEmail());
         holder.telefono.setText(persona.getTelefono());
-        holder.oficina.setText(persona.getOficina());
+        holder.location.setText(String.format("%s, %s", persona.getUnidad(), persona.getOficina()));
 
         /*
         // Obtengo el md5 desde el map
@@ -170,6 +224,20 @@ public final class PersonAdapter extends BaseAdapter {
     }
 
     /**
+     * <p>Returns a filter that can be used to constrain data with a filtering
+     * pattern.</p>
+     *
+     * <p>This method is usually implemented by {@link Adapter}
+     * classes.</p>
+     *
+     * @return a filter used to constrain data
+     */
+    @Override
+    public Filter getFilter() {
+        return this.filter;
+    }
+
+    /**
      * Clase interna.
      */
     private static class ViewHolder {
@@ -178,11 +246,10 @@ public final class PersonAdapter extends BaseAdapter {
 
         TextView nombre;
         TextView cargo;
-        TextView unidad;
-
-        TextView email;
         TextView telefono;
-        TextView oficina;
+        TextView email;
+        TextView location;
+
 
         ViewHolder(View view) {
 
@@ -190,12 +257,11 @@ public final class PersonAdapter extends BaseAdapter {
 
             nombre = view.findViewById(R.id.rp_tv_nombre);
             cargo = view.findViewById(R.id.rp_tv_cargo);
-            unidad = view.findViewById(R.id.rp_tv_unidad);
-
-            email = view.findViewById(R.id.rp_tv_email);
             telefono = view.findViewById(R.id.rp_tv_telefono);
-            oficina = view.findViewById(R.id.rp_tv_oficina);
+            email = view.findViewById(R.id.rp_tv_email);
+            location = view.findViewById(R.id.rp_tv_location);
         }
 
     }
+
 }

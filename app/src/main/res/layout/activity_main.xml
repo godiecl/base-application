@@ -17,24 +17,23 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         app:contentInsetStart="0dp"
         app:contentInsetStartWithNavigation="0dp"
         app:navigationIcon="@drawable/logo_ucn"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:subtitle="Universidad Católica del Norte"
-        app:subtitleTextColor="@color/textColorPrimary"
-        app:title="Directorio UCN"
-        app:titleTextColor="@color/textColorPrimary" />
+        app:theme="@style/Toolbar"
+        app:title="Directorio UCN" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/row_person"
-        android:dividerHeight="1dp" />
+        android:divider="@color/dividerColor"
+        android:dividerHeight="1dp"
+        tools:listitem="@layout/row_person" />
 
     <TextView
         android:id="@android:id/empty"
@@ -42,10 +41,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="18sp"
         android:text="@string/empty"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="gone" />
-
 
 </LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2018.  Diego Urrutia Astorga <durrutia@ucn.cl>
+  ~ This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+  ~ http://creativecommons.org/licenses/by-nc/4.0/
+  ~
+  -->
+
+<resources>
+
+    <!-- Night -->
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="textColorSecondary">#fafafa</color>
+    <color name="textColorTertiary">#eeeeee</color>
+
+    <color name="statusBarColor">@color/colorSkyDarkDarkDark</color>
+    <color name="windowBackground">#000000</color>
+    <color name="dividerColor">#212121</color>
+    <color name="navigationBarColor">@color/colorEarthDarkDark</color>
+    <color name="toolbarBackground">@color/colorSkyDarkDark</color>
+
+</resources>

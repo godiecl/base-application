@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -28,8 +29,11 @@ import androidx.lifecycle.MutableLiveData;
 import cl.ucn.disc.dsm.directorio.model.Person;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * ViewModel of Person
+ */
 @Slf4j
-public class PersonViewModel extends AndroidViewModel {
+public final class PersonViewModel extends AndroidViewModel {
 
     /**
      * Json un-serializer
@@ -50,7 +54,6 @@ public class PersonViewModel extends AndroidViewModel {
         super(application);
     }
 
-
     /**
      * @return the LiveData of List of Person.
      */
@@ -66,7 +69,7 @@ public class PersonViewModel extends AndroidViewModel {
     }
 
     /**
-     *
+     * Carga el archivo JSON en background.
      */
     private void loadPeople() {
 
@@ -76,6 +79,7 @@ public class PersonViewModel extends AndroidViewModel {
 
             List<Person> personList;
 
+            // Carga en background
             try (final InputStream is = getApplication().getAssets().open("ucn.json")) {
 
                 // Tipo de la lista
@@ -87,6 +91,8 @@ public class PersonViewModel extends AndroidViewModel {
 
                 // People!
                 personList = GSON.fromJson(reader, listType);
+
+                Collections.sort(personList, (p1, p2) -> p1.getNombre().compareTo(p2.getNombre()));
 
             } catch (final IOException ex) {
                 log.error("Error, ex");

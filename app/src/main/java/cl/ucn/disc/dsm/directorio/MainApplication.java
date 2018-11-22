@@ -13,6 +13,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
 import org.apache.commons.lang3.time.StopWatch;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -31,6 +32,9 @@ public final class MainApplication extends Application {
         super.onCreate();
 
         StopWatch stopWatch = StopWatch.createStarted();
+
+        // Mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
 
         // Inicializacion de fresco
         Fresco.initialize(this);

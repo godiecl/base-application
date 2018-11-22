@@ -9,11 +9,52 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:colorPrimary">@color/colorPrimaryDark</item>
-        <item name="android:colorPrimaryDark">@color/colorEarthDark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorEarth</item>
         <item name="android:colorAccent">@color/colorAccent</item>
-        <item name="android:navigationBarColor">@color/colorEarthDark</item>
         <item name="android:fontFamily">@font/myriadpro</item>
+
+
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColorTertiary">@color/textColorTertiary</item>
+
+        <item name="android:textAppearanceLarge">@style/TextLarge</item>
+        <item name="android:textAppearanceMedium">@style/TextMedium</item>
+        <item name="android:textAppearanceSmall">@style/TextSmall</item>
+
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor</item>
+    </style>
+
+    <style name="TextLarge" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextMedium" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextSmall" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/textColorTertiary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Toolbar" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="android:background">@color/toolbarBackground</item>
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="subtitleTextColor">@color/colorSkyLight</item>
+        <item name="colorControlNormal">@color/colorSkyLight</item>
+        <item name="android:colorControlNormal">@color/colorSkyLight</item>
+        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/colorSkyLight</item>
     </style>
 
 </resources>
