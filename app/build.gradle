@@ -105,8 +105,8 @@ dependencies {
     testImplementation "ch.qos.logback:logback-classic:1.2.3"
 
     // Lombok Android
-    compileOnly "org.projectlombok:lombok:1.18.2"
-    annotationProcessor "org.projectlombok:lombok:1.18.2"
+    compileOnly "org.projectlombok:lombok:1.18.4"
+    annotationProcessor "org.projectlombok:lombok:1.18.4"
 
     // Faker
     implementation "com.github.javafaker:javafaker:0.16"

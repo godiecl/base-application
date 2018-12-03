@@ -13,13 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import org.apache.commons.lang3.time.StopWatch;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.ViewModelProviders;
+
+import org.apache.commons.lang3.time.StopWatch;
+
 import cl.ucn.disc.dsm.directorio.R;
 import cl.ucn.disc.dsm.directorio.adapters.PersonAdapter;
 import lombok.extern.slf4j.Slf4j;
