@@ -7,6 +7,8 @@
 
 package cl.ucn.disc.dsm.news.model;
 
+import java.util.Date;
+
 import lombok.Getter;
 
 /**
@@ -33,7 +35,7 @@ public final class Article {
     private String urlToImage;
 
     @Getter
-    private String publishedAt;
+    private Date publishedAt;
 
     @Getter
     private String content;
