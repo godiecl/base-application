@@ -9,6 +9,8 @@ package cl.ucn.disc.dsm.news;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -30,5 +32,9 @@ public final class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // Inicializacion de fresco
+        Fresco.initialize(this);
+
     }
 }
