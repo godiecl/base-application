@@ -7,7 +7,18 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- Text -->
+    <color name="textColorPrimary">@color/g900</color>
+    <color name="textColorSecondary">@color/g800</color>
+    <color name="textColorTertiary">@color/g700</color>
+
+    <color name="statusBarColor">@color/g1000</color>
+    <color name="windowBackground">@color/g50</color>
+    <color name="dividerColor">@color/g300</color>
+    <color name="navigationBarColor">@color/g900</color>
+    <color name="toolbarBackground">@color/g900</color>
+
+
 </resources>
