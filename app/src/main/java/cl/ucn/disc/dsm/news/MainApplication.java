@@ -19,6 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class MainApplication extends Application {
 
+
+
+
     /**
      * Called when the application is starting, before any activity, service,
      * or receiver objects (excluding content providers) have been created.

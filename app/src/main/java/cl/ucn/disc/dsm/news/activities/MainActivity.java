@@ -9,11 +9,12 @@ package cl.ucn.disc.dsm.news.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,15 +46,17 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-        // ListView of data
+        // RecyclerView
         {
-            final ListView listView = findViewById(android.R.id.list);
+            final RecyclerView recyclerView = findViewById(R.id.am_rv_articles);
+            final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(layoutManager);
 
-            final View empty = findViewById(android.R.id.empty);
-            listView.setEmptyView(empty);
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+            recyclerView.addItemDecoration(dividerItemDecoration);
 
             final ArticleAdapter articleAdapter = new ArticleAdapter(this);
-            listView.setAdapter(articleAdapter);
+            recyclerView.setAdapter(articleAdapter);
 
             AsyncTask.execute(() -> {
 
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
                     articleAdapter.addArticles(articles);
 
-                    runOnUiThread(() -> articleAdapter.notifyDataSetChanged());
+                    runOnUiThread(articleAdapter::notifyDataSetChanged);
 
                 } catch (IOException e) {
                     log.error("Error", e);
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             });
 
-
         }
+
     }
 }

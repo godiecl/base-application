@@ -27,23 +27,10 @@
         app:subtitle="Latest news headlines"
         app:title="News" />
 
-    <ListView
-        android:id="@android:id/list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/am_rv_articles"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/dividerColor"
-        tools:listitem="@layout/row_article"
-        android:dividerHeight="1dp" />
-
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/empty"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        tools:listitem="@layout/row_article" />
 
 </LinearLayout>
