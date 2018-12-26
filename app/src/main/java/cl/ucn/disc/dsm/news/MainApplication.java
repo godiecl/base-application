@@ -11,6 +11,8 @@ import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+import cl.ucn.disc.dsm.news.persistence.ArticleDatabase;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -19,8 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class MainApplication extends Application {
 
-
-
+    /**
+     * Database
+     */
+    @Getter
+    private static volatile ArticleDatabase articleDatabase;
 
     /**
      * Called when the application is starting, before any activity, service,
@@ -38,6 +43,7 @@ public final class MainApplication extends Application {
 
         // Inicializacion de fresco
         Fresco.initialize(this);
+
 
     }
 }

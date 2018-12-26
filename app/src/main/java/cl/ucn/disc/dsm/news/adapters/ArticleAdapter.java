@@ -32,14 +32,14 @@ import lombok.extern.slf4j.Slf4j;
 public final class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
 
     /**
-     *
+     * List of Articles.
      */
     private final List<Article> articles = new ArrayList<>();
 
     /**
      * Inflater
      */
-    private LayoutInflater inflater;
+    private final LayoutInflater inflater;
 
     /**
      * @param context to use.
@@ -60,7 +60,7 @@ public final class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.Vi
      * an item.
      */
     @Override
-    public ViewHolder onCreateViewHolder(@androidx.annotation.NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(final @androidx.annotation.NonNull ViewGroup parent, final int viewType) {
         final View view = this.inflater.inflate(R.layout.row_article, parent, false);
         return new ViewHolder(view);
     }
@@ -91,9 +91,9 @@ public final class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.Vi
     }
 
     /**
-     *
+     * ViewHolder pattern.
      */
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    protected static final class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         SimpleDraweeView image;
         TextView title;
@@ -106,5 +106,18 @@ public final class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.Vi
             this.description = view.findViewById(R.id.ra_tv_description);
         }
 
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        @Override
+        public void onClick(View v) {
+
+            final int position = super.getPosition();
+            log.debug("Click on position: {}", position);
+
+        }
     }
+
 }

@@ -7,6 +7,10 @@
 
 package cl.ucn.disc.dsm.news.model;
 
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Date;
 
 import lombok.Getter;
@@ -14,8 +18,13 @@ import lombok.Getter;
 /**
  *
  */
+@Entity
 public final class Article {
 
+    @PrimaryKey(autoGenerate = true)
+    private Integer uid;
+
+    @Embedded
     @Getter
     private Source source;
 

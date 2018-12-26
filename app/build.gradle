@@ -114,4 +114,13 @@ dependencies {
     // Android Support RecyclerView v7
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
+    // Room components
+    implementation 'androidx.room:room-runtime:2.1.0-alpha03'
+    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha03'
+    androidTestImplementation 'androidx.room:room-testing:2.1.0-alpha03'
+
+    // Lifecycle components
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01'
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.1.0-alpha01'
+
 }
