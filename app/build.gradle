@@ -12,7 +12,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId 'cl.ucn.disc.dsm.base'
+        applicationId 'cl.ucn.disc.dsm.attack'
         minSdkVersion 24
         targetSdkVersion 28
         versionCode 1

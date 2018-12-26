@@ -6,7 +6,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cl.ucn.disc.dsm.base">
+    package="cl.ucn.disc.dsm.attack">
 
     <application
         android:allowBackup="true"
