@@ -5,7 +5,7 @@
  *
  */
 
-package cl.ucn.disc.dsm.base;
+package cl.ucn.disc.dsm.attack;
 
 import org.junit.Test;
 
